@@ -1,0 +1,18 @@
+targets:
+  $default:
+    builders:
+      nameof:
+        enabled: true
+        generate_for:
+          exclude:
+            - test
+          include:
+            - test/integration/*
+
+builders:
+  nameof:
+    import: "package:nameof/nameof.dart"
+    builder_factories: ["nameof"]
+    build_extensions: { ".dart": [".nameof.dart"] }
+    auto_apply: dependents
+    build_to: source

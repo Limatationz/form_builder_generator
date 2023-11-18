@@ -1,0 +1,25 @@
+name: example
+description: "A new Flutter project."
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  nameof_annotation:
+    path: ../../nameof_annotation
+  flutter_form_builder: ^9.1.1
+  form_builder_validators: ^9.1.0
+  form_builder_generator:
+    path: ..
+
+
+dev_dependencies:
+  lints: ^3.0.0
+  json_serializable: ^6.7.1
+  build_runner:
+  nameof:
+    path: ../../nameof

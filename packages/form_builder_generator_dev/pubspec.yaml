@@ -1,0 +1,22 @@
+name: form_builder_generator_dev
+description: Generator for  Dart class member's names, such as fields, properties, methods, constructors 
+version: 0.1.4
+homepage: https://github.com/flankb/nameof
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  analyzer: any
+  build: ^2.4.1
+  source_gen: ^1.4.0
+  build_config: ^1.1.1
+  form_builder_generator_annotation:
+    path: ../form_builder_generator_annotation
+
+dev_dependencies:
+  build_runner: ^2.4.6
+  build_test: ^2.2.1
+  source_gen_test: ^1.0.6
+  lints: ^3.0.0
+  test: ^1.24.9

@@ -55,12 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
           paddingBetweenFields: 10,
           initialValue: person,
           validators: {
-            NameofPerson.fieldFirstName: FormBuilderValidators.compose([
-              FormBuilderValidators.required(),
+            FbGenClassPerson.fieldFirstName: [
               FormBuilderValidators.minLength(3),
-            ]),
-            NameofPerson.fieldLastName: FormBuilderValidators.required(),
-            NameofPerson.fieldAge: FormBuilderValidators.required(),
+            ],
           },
           onSaved: (value) {
             setState(() {

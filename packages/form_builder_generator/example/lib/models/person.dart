@@ -1,26 +1,32 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'package:nameof_annotation/nameof_annotation.dart';
 import 'package:form_builder_generator/form_builder_generator.dart';
+import 'package:form_builder_generator_annotation/form_builder_generator_annotation.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-
-part 'person.nameof.dart';
+part 'person.fb_gen.dart';
 
 part 'person.g.dart';
 
-@nameof
+@fbGen
 @JsonSerializable()
 class Person extends FormGeneratorModel<Person> {
   String firstName;
   String lastName;
   int age;
-
   double price = 0.0;
-
   bool isTrue = true;
-
   DateTime date = DateTime.now();
+  @FbGenOptions(nullable: true)
+  int? nullable;
+  @FbGenOptions(ignore: true)
+  int? ignored;
 
-  Person({required this.firstName, required this.lastName, required this.age});
+  Person(
+      {required this.firstName,
+      required this.lastName,
+      required this.age,
+      this.nullable,
+      this.ignored});
 
   @override
   Map<String, dynamic> toJson() => _$PersonToJson(this);

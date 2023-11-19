@@ -1,0 +1,18 @@
+targets:
+  $default:
+    builders:
+      form_builder_generator_dev:
+        enabled: true
+        generate_for:
+          exclude:
+            - test
+          include:
+            - test/integration/*
+
+builders:
+  nameof:
+    import: "package:form_builder_generator_dev/form_builder_generator_dev.dart"
+    builder_factories: ["formBuilderGeneratorBuilder"]
+    build_extensions: { ".dart": [".fb_gen.dart"] }
+    auto_apply: dependents
+    build_to: source

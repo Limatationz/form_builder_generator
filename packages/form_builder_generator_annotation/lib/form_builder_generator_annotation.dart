@@ -73,5 +73,4 @@ abstract class FormGeneratorValid {
 }
 
 abstract class FormGeneratorModel<T> extends JsonSerializable {
-  T fromJson(Map<String, dynamic> json);
 }

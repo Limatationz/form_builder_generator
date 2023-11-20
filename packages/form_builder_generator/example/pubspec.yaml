@@ -19,7 +19,6 @@ dependencies:
 
 dev_dependencies:
   lints: ^3.0.0
-  json_serializable: ^6.7.1
   build_runner:
   form_builder_generator_dev:
     path: ../../form_builder_generator_dev

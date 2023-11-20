@@ -76,6 +76,11 @@ class FBGenProcessor {
         .map((e) => '\'${e.name}\',')));
     buffer.writeln('];');
 
+    // write fromJson
+    buffer.writeln();
+    buffer.writeln(
+        'static ${visitor.className} fromJson(Map<String, dynamic> json) => _\$${visitor.className}FromJson(json);');
+
     buffer.writeln('}');
 
     return buffer.toString();
@@ -107,6 +112,7 @@ class FBGenProcessor {
 
     final List<String> superConstructorParameters = [
       "valueType: FbGenClass${visitor.className}(),",
+      "fromJson: FbGenClass${visitor.className}.fromJson,",
     ];
 
     final superConstructorEnd = ');';

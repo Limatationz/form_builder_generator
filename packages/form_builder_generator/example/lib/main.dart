@@ -41,7 +41,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final formKey = GlobalKey<FormBuilderState>();
-  Person person = Person(firstName: 'John', lastName: 'Doe', age: 42);
+  Person person = Person(firstName: 'John', lastName: 'Doe', age: 42, date: DateTime.now(), price: 42.0, isTrue: true, nullable: null, ignored: null);
 
   @override
   Widget build(BuildContext context) {

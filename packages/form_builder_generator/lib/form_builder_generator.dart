@@ -11,8 +11,9 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 class FormGenerator<T extends FormGeneratorModel, R extends FormGeneratorValid>
     extends StatefulWidget {
   /// Initial value for form
-  final T initialValue;
+  final T? initialValue;
   final R valueType;
+  final T Function(Map<String, dynamic>) fromJson;
 
   /// Callback for when form is saved
   final Function(T) onSaved;
@@ -21,7 +22,7 @@ class FormGenerator<T extends FormGeneratorModel, R extends FormGeneratorValid>
   final Function(Map<String, String>)? onError;
 
   /// Decoration for form fields
-  final InputDecoration decoration;
+  final InputDecoration? decoration;
 
   /// Vertical padding between form fields
   final double? paddingBetweenFields;
@@ -52,11 +53,12 @@ class FormGenerator<T extends FormGeneratorModel, R extends FormGeneratorValid>
 
   const FormGenerator(
       {super.key,
-      required this.initialValue,
       required this.valueType,
       required this.onSaved,
+      required this.fromJson,
+      this.initialValue,
       this.onError,
-      this.decoration = const InputDecoration(),
+      this.decoration,
       this.paddingBetweenFields,
       this.validators,
       this.submitButtonBuilder,
@@ -83,13 +85,14 @@ class _FormGeneratorState<T extends FormGeneratorModel,
         ...widget.valueType.getFieldNames().mapIndexed((index, e) => Padding(
             padding: EdgeInsets.only(bottom: widget.paddingBetweenFields ?? 0),
             child: Builder(builder: (context) {
-              final dynamic field = widget.initialValue.toJson()[e];
+              final dynamic field = widget.initialValue?.toJson()[e];
               final fieldType = field.runtimeType;
               final bool isLast =
                   index == widget.valueType.getFieldNames().length - 1;
               final inputAction =
                   isLast ? TextInputAction.done : TextInputAction.next;
-              final inputDecoration = widget.decoration.copyWith(
+              final inputDecoration =
+                  (widget.decoration ?? InputDecoration()).copyWith(
                 labelText: e,
               );
               final isRequired =
@@ -166,8 +169,7 @@ class _FormGeneratorState<T extends FormGeneratorModel,
           onPressed() {
             if (_formKey.currentState!.saveAndValidate()) {
               print(jsonEncode(_formKey.currentState!.value));
-              final newPerson =
-                  widget.initialValue.fromJson(_formKey.currentState!.value);
+              final newPerson = widget.fromJson(_formKey.currentState!.value);
               widget.onSaved(newPerson);
             } else {
               final error = _formKey.currentState!.errors;

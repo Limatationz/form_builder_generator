@@ -118,6 +118,7 @@ class FBGenProcessor {
     final List<String> superConstructorParameters = [
       "valueType: FbGenClass${visitor.className}(),",
       "fromJson: FbGenClass${visitor.className}.fromJson,",
+      "toJson: FbGenClass${visitor.className}.toJson,"
     ];
 
     final superConstructorEnd = ');';

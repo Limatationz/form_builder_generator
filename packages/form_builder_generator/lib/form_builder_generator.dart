@@ -13,6 +13,7 @@ class FormGenerator<T, R extends FormGeneratorValid> extends StatefulWidget {
   final T? initialValue;
   final R valueType;
   final T Function(Map<String, dynamic>) fromJson;
+  final Map<String, dynamic> Function(T) toJson;
 
   /// Callback for when form is saved
   final Function(T) onSaved;
@@ -55,6 +56,7 @@ class FormGenerator<T, R extends FormGeneratorValid> extends StatefulWidget {
       required this.valueType,
       required this.onSaved,
       required this.fromJson,
+      required this.toJson,
       this.initialValue,
       this.onError,
       this.decoration,
@@ -73,8 +75,8 @@ class FormGenerator<T, R extends FormGeneratorValid> extends StatefulWidget {
   State<FormGenerator<T, R>> createState() => _FormGeneratorState<T, R>();
 }
 
-class _FormGeneratorState<T,
-    R extends FormGeneratorValid> extends State<FormGenerator<T, R>> {
+class _FormGeneratorState<T, R extends FormGeneratorValid>
+    extends State<FormGenerator<T, R>> {
   final _formKey = GlobalKey<FormBuilderState>();
 
   @override
@@ -88,7 +90,9 @@ class _FormGeneratorState<T,
         ...widget.valueType.getFieldNames().mapIndexed((index, e) => Padding(
             padding: EdgeInsets.only(bottom: widget.paddingBetweenFields ?? 0),
             child: Builder(builder: (context) {
-              final dynamic field = widget.initialValue?.toJson()[e];
+              final dynamic field = widget.initialValue != null
+                  ? widget.toJson(widget.initialValue!)[e]
+                  : null;
               final fieldType = field.runtimeType;
               final bool isLast =
                   index == widget.valueType.getFieldNames().length - 1;

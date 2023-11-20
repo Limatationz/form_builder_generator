@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onSaved: (value) {
             setState(() {
               person = value;
-              print(jsonEncode(person.toJson()));
+              print(jsonEncode(Person.toJson(person)));
             });
           },
           onError: (errors) {

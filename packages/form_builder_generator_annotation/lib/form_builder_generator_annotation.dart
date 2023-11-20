@@ -71,6 +71,3 @@ abstract class FormGeneratorValid {
 
   List<String> getRequiredFieldNames();
 }
-
-abstract class FormGeneratorModel<T> extends JsonSerializable {
-}

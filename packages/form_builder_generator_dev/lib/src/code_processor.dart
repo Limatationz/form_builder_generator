@@ -81,6 +81,11 @@ class FBGenProcessor {
     buffer.writeln(
         'static ${visitor.className} fromJson(Map<String, dynamic> json) => _\$${visitor.className}FromJson(json);');
 
+    // write toJson
+    buffer.writeln();
+    buffer.writeln(
+        'static Map<String, dynamic> toJson(${visitor.className} instance) => _\$${visitor.className}ToJson(instance);');
+
     buffer.writeln('}');
 
     return buffer.toString();

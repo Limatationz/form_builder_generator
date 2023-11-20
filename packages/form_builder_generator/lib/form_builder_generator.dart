@@ -8,8 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_generator_annotation/form_builder_generator_annotation.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-class FormGenerator<T extends FormGeneratorModel, R extends FormGeneratorValid>
-    extends StatefulWidget {
+class FormGenerator<T, R extends FormGeneratorValid> extends StatefulWidget {
   /// Initial value for form
   final T? initialValue;
   final R valueType;
@@ -51,7 +50,7 @@ class FormGenerator<T extends FormGeneratorModel, R extends FormGeneratorValid>
   /// Callback for when form is changed
   final VoidCallback? onChanged;
 
-  const FormGenerator(
+  FormGenerator(
       {super.key,
       required this.valueType,
       required this.onSaved,
@@ -64,13 +63,17 @@ class FormGenerator<T extends FormGeneratorModel, R extends FormGeneratorValid>
       this.submitButtonBuilder,
       this.enabled = true,
       this.autovalidateMode,
-      this.onChanged});
+      this.onChanged})
+      : assert(initialValue == null ||
+            valueType.runtimeType
+                .toString()
+                .contains(initialValue.runtimeType.toString()));
 
   @override
   State<FormGenerator<T, R>> createState() => _FormGeneratorState<T, R>();
 }
 
-class _FormGeneratorState<T extends FormGeneratorModel,
+class _FormGeneratorState<T,
     R extends FormGeneratorValid> extends State<FormGenerator<T, R>> {
   final _formKey = GlobalKey<FormBuilderState>();
 

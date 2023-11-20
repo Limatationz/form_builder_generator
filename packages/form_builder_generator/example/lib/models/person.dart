@@ -6,7 +6,7 @@ part 'person.fb_gen.dart';
 
 @fbGen
 @JsonSerializable()
-class Person extends FormGeneratorModel<Person> {
+class Person {
   String firstName;
   String lastName;
   int age;
@@ -28,7 +28,4 @@ class Person extends FormGeneratorModel<Person> {
     this.nullable,
     this.ignored,
   });
-
-  @override
-  Map<String, dynamic> toJson() => _$PersonToJson(this);
 }

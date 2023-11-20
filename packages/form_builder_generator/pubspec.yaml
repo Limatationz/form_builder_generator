@@ -14,7 +14,10 @@ dependencies:
   flutter_form_builder: ^9.1.1
   form_builder_validators: ^9.1.0
   form_builder_generator_annotation:
-    path: ../form_builder_generator_annotation
+    #  path: ../form_builder_generator_annotation
+    git:
+      url: https://github.com/Limatationz/form_builder_generator.git
+      path: packages/form_builder_generator_annotation
 
 dev_dependencies:
   flutter_test:

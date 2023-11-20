@@ -14,7 +14,10 @@ dependencies:
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
   form_builder_generator_annotation:
-    path: ../form_builder_generator_annotation
+  #  path: ../form_builder_generator_annotation
+    git:
+      url: https://github.com/Limatationz/form_builder_generator.git
+      path: packages/form_builder_generator_annotation
 
 dev_dependencies:
   build_runner: ^2.4.6
